@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
+    public static CameraController Instance { get; private set; }
     public Transform player;
     public Vector3 offset;
     private Vector3 velocity = Vector3.zero;
     [Range(0f, 1f)]
     public float smoothSpeed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-       
-    }
 
-    // Update is called once per frame
+    public Camera cameraTest;
+
+    private void Start()
+    {
+        Instance = this;
+    }
     void Update()
     {
         if (player != null)
@@ -28,4 +27,6 @@ public class CameraController : MonoBehaviour
         }
         
     }
+
+
 }

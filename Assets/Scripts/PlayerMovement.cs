@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,32 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
     public float moveSpeed;
-    Transform cameraObject;
-
+    //Transform cameraObject;
+   
+    public Transform cameraObject;
    // private Rigidbody rb;
     Vector3 moveDirection;
-
+    CameraController playerManager;
     private void Awake()
     {
-        cameraObject = Camera.main.transform;
+       // cameraObject = Camera.main.transform;
     }
-    //private void Awake()
-    //{
-    //    rb = GetComponentInChildren<Rigidbody>();
-    //    playerControl = new CustomInput();
-    //}
-    //private void OnEnable()
-    //{
-    //    playerControl.Enable();
-    //    playerControl.PlayerMovement.Movement.performed += OnMovementPerformed;
-    //    playerControl.PlayerMovement.Movement.canceled += OnMovementCancelled;
-    //}
-    //private void OnDisable()
-    //{
-    //    playerControl.Disable();
-    //    playerControl.PlayerMovement.Movement.performed -= OnMovementPerformed;
-    //    playerControl.PlayerMovement.Movement.canceled -= OnMovementCancelled;
-    //}
 
     private void Update()
     {
@@ -54,25 +39,40 @@ public class PlayerMovement : MonoBehaviour
     //}
     public void MovePlayer()
     {
+        #region
+        //camera direction
+        //Vector3 camForward = cameraObject.forward;
+        //Vector3 camRight = cameraObject.right;
+        //camForward.y = 0;
+        //camRight.y = 0;
+
+        //Vector3 forwardRelative = verticalInput * camForward;
+        //Vector3 rightRelative = horizontalInput * camRight;
+
+        //Vector3 movementDirection = forwardRelative + rightRelative;
+        #endregion
         //moves the player
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
         //rotates the player so it moves where the camera is looking
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 1f);
-        transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(MovementDirection()), 1f);
+        transform.Translate(MovementDirection() * moveSpeed * Time.deltaTime, Space.World);
+        
     }
 
-    public void OnTriggerEnter(Collider other)
+    public Vector3 MovementDirection()
     {
-        Debug.Log("aaa");
-        cameraObject.transform.Rotate(0, 0, 180);
-        GameObject.FindGameObjectWithTag("MainCamera");
+        Vector3 camForward = cameraObject.forward;
+        Vector3 camRight = cameraObject.right;
+        camForward.y = 0;
+        camRight.y = 0;
+
+        Vector3 forwardRelative = verticalInput * camForward * 2f;
+        Vector3 rightRelative = horizontalInput * camRight;
+        Vector3 movementDirection = forwardRelative + rightRelative;
+
+        return movementDirection;
     }
-    public void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("aaa");
-        cameraObject.transform.Rotate(0, 0, 180);
-        GameObject.FindGameObjectWithTag("MainCamera");
-    }
+
 
     //public void RotationPlayer()
     //{
