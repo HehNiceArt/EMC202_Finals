@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         //rotates the player so it moves where the camera is looking
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(MovementDirection()), 1f);
         transform.Translate(MovementDirection() * moveSpeed * Time.deltaTime, Space.World);
+
         
     }
 
