@@ -4,12 +4,14 @@ using UnityEngine;
 using TMPro;
 public class InteractionPromptUI : MonoBehaviour
 {
-    private Camera mainCam;
+    [SerializeField] private Camera mainCam;
     [SerializeField] private TextMeshProUGUI prompText;
     [SerializeField] private GameObject uiPanel;
+
+    PlayerMovement playerMovement;
     private void Start()
     {
-        mainCam = Camera.main;
+      //  mainCam = playerMovement.cameraObject.ge
         uiPanel.SetActive(false);
     }
     private void LateUpdate()

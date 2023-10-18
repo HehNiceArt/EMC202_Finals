@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     CameraController playerManager;
     private void Awake()
     {
-        cameraObject = Camera.main.transform;
+       // cameraObject = Camera.main.transform;
         rb = GetComponentInChildren<Rigidbody>();
     }
 

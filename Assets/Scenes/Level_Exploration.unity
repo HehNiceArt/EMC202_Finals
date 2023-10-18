@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17549534, g: 0.21958622, b: 0.30190957, a: 1}
+  m_IndirectSpecularColor: {r: 0.17664556, g: 0.22110687, b: 0.3034134, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -217,9 +217,9 @@ MonoBehaviour:
   m_VerticalDamping: 0.3
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.5
-  m_DeadZoneHeight: 0.76
-  m_SoftZoneWidth: 0.51
+  m_DeadZoneWidth: 0.45
+  m_DeadZoneHeight: 0.08
+  m_SoftZoneWidth: 0.75
   m_SoftZoneHeight: 0.78
   m_BiasX: 0
   m_BiasY: 0
@@ -288,7 +288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296652964}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.27742326, y: 0.717258, z: -0.50054014, w: -0.3975386}
+  m_LocalRotation: {x: -0.2774232, y: 0.717258, z: -0.5005402, w: -0.39753854}
   m_LocalPosition: {x: 48, y: 166, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -383,7 +383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.27742326, y: 0.717258, z: -0.50054014, w: -0.3975386}
+  m_LocalRotation: {x: -0.2774232, y: 0.717258, z: -0.5005402, w: -0.39753854}
   m_LocalPosition: {x: 48, y: 166, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -556,13 +556,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06243222, y: -0.6358739, z: 0.7480695, w: 0.17932816}
-  m_LocalPosition: {x: 44, y: 573, z: 217}
+  m_LocalRotation: {x: 0.055096053, y: -0.846665, z: 0.5238415, w: 0.075583495}
+  m_LocalPosition: {x: 0, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 68.274, y: -60.277, z: 110.067}
+  m_LocalEulerAnglesHint: {x: 63.555, y: 189.078, z: 358.185}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,6 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb9a11ce94c3d42bc4985f4cbd895c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 330585545}
   prompText: {fileID: 777532604}
   uiPanel: {fileID: 1902442172}
   isDisplayed: 0
@@ -1349,7 +1350,7 @@ MonoBehaviour:
   horizontalInput: 0
   moveSpeed: 75
   rotationSpeed: 1
-  cameraObject: {fileID: 1593476265}
+  cameraObject: {fileID: 330585546}
 --- !u!4 &901993457
 Transform:
   m_ObjectHideFlags: 0
