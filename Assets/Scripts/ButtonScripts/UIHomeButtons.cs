@@ -26,12 +26,8 @@ public class UIHomeButtons : MonoBehaviour
     }
     IEnumerator UnLoad()
     {
-        AsyncOperation asyncload = SceneManager.LoadSceneAsync(0);
-        Debug.Log("test");
-        while (!asyncload.isDone) 
-        {
-            yield return null;
-        }
+        AsyncOperation asyncload = SceneManager.LoadSceneAsync("Level_Exploration");
+        while (!asyncload.isDone) { yield return null; }
     }
 
 }
