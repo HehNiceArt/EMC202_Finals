@@ -8,7 +8,7 @@ public class Object1 : MonoBehaviour, IInteractable
     public string InteractionPrompt => prompt;
     public bool Interact(Interactor interactor)
     {
-        Debug.Log("Object is interacting    ");
+        Debug.Log("E WAS PRESSED!");
         return true;
     }
 
