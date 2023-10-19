@@ -17,6 +17,11 @@ public class UIStartButton : MonoBehaviour
         
         start.clicked += () => StartCoroutine(UnLoad());
     }
+
+    private void Awake()
+    {
+        
+    }
     //public void Awake()
     //{
     //    build
