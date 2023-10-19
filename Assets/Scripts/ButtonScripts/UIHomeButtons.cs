@@ -28,6 +28,7 @@ public class UIHomeButtons : MonoBehaviour
     {
         AsyncOperation asyncload = SceneManager.LoadSceneAsync("Level_Exploration");
         while (!asyncload.isDone) { yield return null; }
+
     }
 
 }
