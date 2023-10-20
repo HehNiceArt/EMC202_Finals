@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/CustomSprites/StartScreen.png?fileID=2800000&amp;guid=f0e65e0b24f054643ac4aea85b2ac0a5&amp;type=3#StartScreen&apos;); -unity-background-image-tint-color: rgb(118, 75, 75);">
+        <ui:VisualElement style="flex-grow: 1; justify-content: flex-end; padding-bottom: 50px; align-self: auto; flex-direction: column; flex-wrap: nowrap; align-items: center;">
+            <ui:Label tabindex="-1" text="Loading" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-items: center; justify-content: center; align-self: center; -unity-text-outline-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); font-size: 35px;" />
+            <ui:ProgressBar value="0" style="width: 1826px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

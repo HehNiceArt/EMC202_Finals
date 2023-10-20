@@ -12,6 +12,7 @@ public class UIStartButton : MonoBehaviour
         Button start = root.Q<Button>("StartButton");
         Label buildVersion = root.Q<Label>("BuildVersion");
         Label buildVersionDate = root.Q<Label>("BuildVersionDate");
+        string date = string.Format(DateTime.Now.ToString("d"));
         buildVersion.text = Application.version;
         buildVersionDate.text = string.Format("{0}", DateTime.Now.ToString("d"));
         
