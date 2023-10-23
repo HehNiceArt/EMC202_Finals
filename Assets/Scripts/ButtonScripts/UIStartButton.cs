@@ -29,8 +29,11 @@ public class UIStartButton : MonoBehaviour
     //}
     IEnumerator UnLoad()
     {
-        AsyncOperation asyncload = SceneManager.LoadSceneAsync("UI_Home");
-        while (!asyncload.isDone) { yield return null; } 
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(1);
+        //while (!true) { yield return null; }
+        //AsyncOperation asyncload = SceneManager.LoadSceneAsync("UI_Home");
+        //while (!asyncload.isDone) { yield return null; } 
     }
         
 }

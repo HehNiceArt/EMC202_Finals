@@ -1,0 +1,18 @@
+.title {
+    -unity-font: url('project://database/Assets/CustomSprites/Doctor%20Glitch.otf?fileID=12800000&guid=12b5151e7041c78458a6f8f4bed1ea71&type=3#Doctor Glitch');
+    justify-content: center;
+    align-self: center;
+    font-size: 112px;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: initial;
+}
+
+.subtitle {
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: initial;
+    -unity-font: url('project://database/Assets/CustomSprites/Doctor%20Glitch.otf?fileID=12800000&guid=12b5151e7041c78458a6f8f4bed1ea71&type=3#Doctor Glitch');
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+}
