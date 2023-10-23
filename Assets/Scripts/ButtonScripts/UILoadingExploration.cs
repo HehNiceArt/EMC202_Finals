@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using UnityEngine.UIElements;
 using UnityEngine.UI;
-
-public class UILoading : MonoBehaviour
+public class UILoadingExploration : MonoBehaviour
 {
     [Header("Progress Bar")]
     [SerializeField] Image progressBar;
@@ -18,16 +16,16 @@ public class UILoading : MonoBehaviour
     {
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
         ImageChange();
-        StartCoroutine(UnLoad(nextSceneLoad));
-        
+        StartCoroutine(UnLoad());
+
     }
-           
-   public IEnumerator UnLoad(int count)
+
+    public IEnumerator UnLoad()
     {
-        AsyncOperation gameLevel = SceneManager.LoadSceneAsync(count);
-        while (gameLevel.progress < 1) 
+        AsyncOperation gameLevel = SceneManager.LoadSceneAsync(nextSceneLoad);
+        while (gameLevel.progress < 1)
         {
-               progressBar.fillAmount = gameLevel.progress;
+            progressBar.fillAmount = gameLevel.progress;
             yield return new WaitForEndOfFrame();
         }
     }
@@ -41,4 +39,3 @@ public class UILoading : MonoBehaviour
 
     }
 }
-

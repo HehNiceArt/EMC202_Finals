@@ -7,26 +7,46 @@ using UnityEngine.UIElements;
 
 public class UIHomeButtons : MonoBehaviour
 {
+    private int nextSceneLoad;
+    UILoading load;
     private void OnEnable()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
-        Button goBack = root.Q<Button>("Explore");
-       // Button destroySelf = root.Q<Button>("Destroy");
+        #region Buttons
+        #region Exploration
+        Button explore = root.Q<Button>("Explore");
+        Button formation = root.Q<Button>("Formation");
+        #endregion
+        #region BottmButtons
+        Button recruits = root.Q<Button>("Recruits");
+        Button armory = root.Q<Button>("Armory");
+        Button dorm = root.Q<Button>("Dorm");
+        Button gacha = root.Q<Button>("Gacha");
+        Button mail = root.Q<Button>("Mail");
+        #endregion
+        #region Settings
+        Button settings = root.Q<Button>("Settings");
+        Button notice = root.Q<Button>("Notice");
+        Button friends = root.Q<Button>("Friends");
+        Button ranks = root.Q<Button>("Ranks");
+        #endregion
+        #endregion
 
-        goBack.clicked += () => StartCoroutine(UnLoad());
-       // goBack.clicked += () => UnLoad();
-       // yield return new WaitForSeconds(10f);
-      //  destroySelf.clicked += () => SceneManager.UnloadSceneAsync(1);
+        #region Button Triggers
+        explore.clicked += () => StartCoroutine(UnLoad()); 
+        #endregion
     }
-
-    private void Update()
+    private void Start()
     {
-      //  StartCoroutine(UnLoad());
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+       // Debug.Log("Home" + nextSceneLoad);
     }
     IEnumerator UnLoad()
     {
-        AsyncOperation asyncload = SceneManager.LoadSceneAsync("Level_Exploration");
+      //  load.UnLoad(nextSceneLoad);
+       // Debug.Log(load);
+        AsyncOperation asyncload = SceneManager.LoadSceneAsync(nextSceneLoad);
         while (!asyncload.isDone) { yield return null; }
 
     }
