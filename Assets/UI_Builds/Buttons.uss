@@ -28,3 +28,13 @@
     border-bottom-right-radius: 19px;
     border-bottom-left-radius: 19px;
 }
+
+.buttonsContainer {
+    font-size: 30px;
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    width: 240px;
+    height: 76px;
+}

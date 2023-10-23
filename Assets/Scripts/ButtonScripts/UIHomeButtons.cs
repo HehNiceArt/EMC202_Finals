@@ -11,7 +11,7 @@ public class UIHomeButtons : MonoBehaviour
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
-        Button goBack = root.Q<Button>("GoBack");
+        Button goBack = root.Q<Button>("Explore");
        // Button destroySelf = root.Q<Button>("Destroy");
 
         goBack.clicked += () => StartCoroutine(UnLoad());
