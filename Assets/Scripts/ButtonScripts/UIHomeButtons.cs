@@ -9,11 +9,22 @@ public class UIHomeButtons : MonoBehaviour
 {
     private int nextSceneLoad;
     UILoading load;
+    VisualElement root;
+    VisualElement characterContainer;
+    [SerializeField] Sprite spriteMaiko;
+    [SerializeField] Sprite spriteYumi;
+    [SerializeField] Sprite spriteNoName;
     private void OnEnable()
     {
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+         root = GetComponent<UIDocument>().rootVisualElement;
 
         #region Buttons
+        #region
+        characterContainer = root.Q<VisualElement>("Characters");
+        Button changeCharacterYumi = root.Q<Button>("KohanaYumiButton");
+        Button changeCharacterMaiko = root.Q<Button>("NanamiMaikoButton");
+        Button changeCharacterNoName = root.Q<Button>("NoNameButton");
+        #endregion
         #region Exploration
         Button explore = root.Q<Button>("Explore");
         Button formation = root.Q<Button>("Formation");
@@ -34,13 +45,18 @@ public class UIHomeButtons : MonoBehaviour
         #endregion
 
         #region Button Triggers
-        explore.clicked += () => StartCoroutine(UnLoad()); 
+
+        explore.clicked += () => StartCoroutine(UnLoad());
+        changeCharacterYumi.clicked += () => ChangeCharacterSpriteYumi();
+        changeCharacterMaiko.clicked += () => ChangeCharacterSpriteMaiko();
+        changeCharacterNoName.clicked += () => ChangeCharacterSpriteNoName();
+        
         #endregion
+
     }
     private void Start()
     {
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
-       // Debug.Log("Home" + nextSceneLoad);
     }
     IEnumerator UnLoad()
     {
@@ -51,4 +67,35 @@ public class UIHomeButtons : MonoBehaviour
 
     }
 
+    #region Character Sprites
+    private void ChangeCharacterSpriteMaiko()
+    {
+        characterContainer.style.backgroundImage = new StyleBackground(spriteMaiko);
+    }
+    private void ChangeCharacterSpriteYumi()
+    {
+        characterContainer.style.backgroundImage = new StyleBackground(spriteYumi);
+    }
+    private void ChangeCharacterSpriteNoName()
+    {
+        characterContainer.style.backgroundImage = new StyleBackground(spriteNoName);
+    }
+    #endregion
+    #region Switch Case Character Sprite
+    //private void SetCharacterSprite(int index)
+    //{
+    //    switch (index)
+    //    {
+    //        case 0:
+    //            characterContainer.style.backgroundImage = new StyleBackground(spriteYumi);
+    //            break;
+    //        case 1:
+    //            characterContainer.style.backgroundImage = new StyleBackground(spriteMaiko);
+    //            break;
+    //        case 2:
+    //            characterContainer.style.backgroundImage = new StyleBackground(spriteNoName);
+    //            break;
+    //    }
+    //}
+    #endregion
 }

@@ -1250,6 +1250,7 @@ GameObject:
   - component: {fileID: 1588079646}
   - component: {fileID: 1588079645}
   - component: {fileID: 1588079647}
+  - component: {fileID: 1588079648}
   m_Layer: 5
   m_Name: UIHome
   m_TagString: Untagged
@@ -1302,6 +1303,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab2d0866700b674b954e3a6cacfbbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteMaiko: {fileID: 21300000, guid: 9f1fb5f0168bd7c439f44e718c4074c5, type: 3}
+  spriteYumi: {fileID: 21300000, guid: e25547fb1a0eabd41888acb9978566ff, type: 3}
+  spriteNoName: {fileID: 21300000, guid: c7c2b689999ca0c45ad41618c20acff8, type: 3}
+--- !u!114 &1588079648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588079644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8331fb1c4fd1f41b1d75ce255f7d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionImage: []
 --- !u!1 &1964692369
 GameObject:
   m_ObjectHideFlags: 0
