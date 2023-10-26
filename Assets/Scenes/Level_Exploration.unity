@@ -1061,7 +1061,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.137852, y: 0.14754829, z: -0.020772288, w: 0.97918075}
+  m_LocalRotation: {x: 0.13785198, y: 0.14754824, z: -0.020772286, w: 0.97918075}
   m_LocalPosition: {x: -643.6891, y: 489.16998, z: -102.20001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1621,7 +1621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456395354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.137852, y: 0.14754829, z: -0.020772288, w: 0.97918075}
+  m_LocalRotation: {x: 0.13785198, y: 0.14754824, z: -0.020772286, w: 0.97918075}
   m_LocalPosition: {x: -643.6891, y: 489.16998, z: -102.20001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2867,7 +2867,6 @@ GameObject:
   m_Component:
   - component: {fileID: 789343919}
   - component: {fileID: 789343922}
-  - component: {fileID: 789343921}
   - component: {fileID: 789343925}
   - component: {fileID: 789343920}
   - component: {fileID: 789343923}
@@ -2906,7 +2905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868ab94b30c9ce14883391d8f2dd0447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundDistance: 1
+  groundDistance: 0
   terrainLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -2914,28 +2913,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   spriteRenderer: {fileID: 793619319}
   controller: {fileID: 789343925}
+  footstepOffset: 0
   cameraObject: {fileID: 330585546}
---- !u!135 &789343921
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789343918}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 32.717377
-  m_Center: {x: 0, y: 32.217377, z: 0}
 --- !u!54 &789343922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3013,10 +2992,10 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 66.15
-  m_Radius: 33.8
-  m_SlopeLimit: 45.58
-  m_StepOffset: 0.3
+  m_Height: 70.7
+  m_Radius: 16.4
+  m_SlopeLimit: 100
+  m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 31.55, z: 0}
