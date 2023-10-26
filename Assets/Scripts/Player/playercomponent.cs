@@ -16,6 +16,7 @@ public class playercomponent : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] CharacterController controller;
     [SerializeField] CustomInput playerController;
+    [SerializeField] float footstepOffset;
     [Header("Camera")]
     [SerializeField] Transform cameraObject;
     //[SerializeField] private Vector2 movementInput = Vector2.zero;
@@ -35,20 +36,24 @@ public class playercomponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Vector3 castPos = transform.position;
-        castPos.y += 1;
+        #region RayCast
+        //RaycastHit hit;
+        //Vector3 castPos = transform.position;
+        //castPos.y += 1;
 
-        if(Physics.Raycast(castPos,-transform.up, out hit, Mathf.Infinity, terrainLayer))
-        {
-            if( hit.collider != null )
-            {
-                Vector3 movePos = transform.position;
-                movePos.y = hit.point.y + groundDistance;
-                transform.position = movePos;
-            }
-        }
-
+        //if(Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
+        //{
+        //    if( hit.collider != null )
+        //    {
+        //        Vector3 movePos = transform.position;
+        //        movePos.y = hit.point.y + groundDistance;
+        //        transform.position = movePos;
+        //        Debug.Log("hit.collider != null");
+        //    }
+        //    Debug.Log("is hit");
+        //}
+        #endregion
+        RayCast();
         PlayerMovement();
         #region Flip CharacterSprite depending on Rotation
         //if (horizontalInput != 0 && horizontalInput < 0)
@@ -62,18 +67,46 @@ public class playercomponent : MonoBehaviour
        #endregion
     }
 
+    private void RayCast()
+    {
+        //RaycastHit hit;
+        //Vector3 castPos = transform.position;
+        //castPos.y += 1;
+
+        //if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
+        //{
+        //    if (hit.collider != null)
+        //    {
+        //        Vector3 movePos = transform.position;
+        //        movePos.y = hit.point.y + groundDistance;
+        //        transform.position = movePos;
+        //    }
+        //}
+        Ray ray = new Ray(transform.position, -transform.up);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            if(controller.isGrounded)
+            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            Vector3 targetDir = (transform.position - hit.point).normalized;
+            transform.position = hit.point + targetDir * 1f;
+        }
+    }
+
     private void PlayerMovement()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+        //it should be the 0 that's doing the issue
         Vector3 moveDir = new Vector3(x, 0, y).normalized;
+        Debug.DrawLine(transform.position, moveDir);
         if (moveDir.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + cameraObject.eulerAngles.y;
-            Debug.Log(targetAngle);
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            
             controller.Move(moveDirection.normalized * speed * Time.deltaTime);
         }
     }
