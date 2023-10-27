@@ -1939,7 +1939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13785198, y: 0.14754824, z: -0.020772286, w: 0.97918075}
+  m_LocalRotation: {x: 0.137852, y: 0.14754829, z: -0.020772288, w: 0.97918075}
   m_LocalPosition: {x: -643.6891, y: 489.16998, z: -102.20001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2664,7 +2664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456395354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13785198, y: 0.14754824, z: -0.020772286, w: 0.97918075}
+  m_LocalRotation: {x: 0.137852, y: 0.14754829, z: -0.020772288, w: 0.97918075}
   m_LocalPosition: {x: -643.6891, y: 489.16998, z: -102.20001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3960,6 +3960,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 793619319}
   controller: {fileID: 789343925}
   playerHeight: 0
+  dashTime: 0.25
+  dashSpeed: 1300
+  dashCooldown: 0.25
   cameraObject: {fileID: 330585546}
 --- !u!54 &789343922
 Rigidbody:

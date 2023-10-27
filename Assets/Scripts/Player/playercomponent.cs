@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Lumin;
 using UnityEngine.Rendering.Universal;
 
 public class playercomponent : MonoBehaviour
@@ -28,6 +29,13 @@ public class playercomponent : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private CustomInput playerController;
     [SerializeField] private float playerHeight;
+
+    [Header("Dash")]
+    [SerializeField] float dashTime;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashCooldown;
+    bool canDash = true;
+    bool isDashing;
 
     #region Jump Header
     //[Header("Jump")]
@@ -62,26 +70,7 @@ public class playercomponent : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        #region RayCast
-
-        //RaycastHit hit;
-        //Vector3 castPos = transform.position;
-        //castPos.y += 1;
-
-        //if(Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
-        //{
-        //    if( hit.collider != null )
-        //    {
-        //        Vector3 movePos = transform.position;
-        //        movePos.y = hit.point.y + groundDistance;
-        //        transform.position = movePos;
-        //        Debug.Log("hit.collider != null");
-        //    }
-        //    Debug.Log("is hit");
-        //}
-
-        #endregion RayCast
-
+        if(isDashing) { return; }
         ShiftRun();
         PlayerMovement();
 
@@ -98,14 +87,9 @@ public class playercomponent : MonoBehaviour
 
         #endregion Flip CharacterSprite depending on Rotation
     }
-
-    //private void LateUpdate()
-    //{
-    //    var rot = cam.transform.rotation;
-    //    transform.LookAt(transform.position + rot * Vector3.forward, rot * Vector3.up);
-    //}
     private void FixedUpdate()
     {
+        if(isDashing) { return; }
         RayCast();
     }
 
@@ -195,26 +179,47 @@ public class playercomponent : MonoBehaviour
 
         if (moveDir.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + cameraObject.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            controller.Move(moveDirection.normalized * walkSpeed * Time.deltaTime);
+            MoveDirection();
         }
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+
     }
 
+    Vector3 moveDirection;
+    private CharacterController MoveDirection()
+    {
+        float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + cameraObject.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        controller.Move(moveDirection.normalized * walkSpeed * Time.deltaTime);
+        return controller;
+    }
     private float ShiftRun()
     {
         float defaultSpeed = 150f;
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            walkSpeed = runSpeed;
-        }
-
+        if (Input.GetKeyDown(KeyCode.LeftShift)) { walkSpeed = runSpeed; }
         if (Input.GetKeyUp(KeyCode.LeftShift))
-            walkSpeed = defaultSpeed;
+        walkSpeed = defaultSpeed;
         return walkSpeed;
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float startTime = Time.time;
+        while (Time.time < startTime + dashTime)
+        {
+            controller.Move(moveDirection * dashSpeed * Time.deltaTime); 
+            yield return null;
+        }
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
     #region Jump Code
     //private void Jump()
