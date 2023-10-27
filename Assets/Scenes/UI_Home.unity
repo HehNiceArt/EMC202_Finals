@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteMaiko: {fileID: 21300000, guid: 9f1fb5f0168bd7c439f44e718c4074c5, type: 3}
   spriteYumi: {fileID: 21300000, guid: e25547fb1a0eabd41888acb9978566ff, type: 3}
-  spriteNoName: {fileID: 21300000, guid: c7c2b689999ca0c45ad41618c20acff8, type: 3}
+  spriteNoName: {fileID: 21300000, guid: 9eb87df5771e0184c975797665678a14, type: 3}
 --- !u!114 &1588079648
 MonoBehaviour:
   m_ObjectHideFlags: 0
