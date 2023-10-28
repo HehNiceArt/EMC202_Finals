@@ -152,7 +152,7 @@ public class playercomponent : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashTime)
         {
-            controller.Move(moveDirection * dashSpeed * Time.deltaTime); 
+            controller.Move(moveDirection.normalized * dashSpeed * Time.deltaTime); 
             yield return null;
         }
         isDashing = false;
