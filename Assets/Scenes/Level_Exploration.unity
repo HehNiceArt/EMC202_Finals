@@ -3960,7 +3960,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 793619319}
   controller: {fileID: 789343925}
   playerHeight: 0
-  dashTime: 0.25
+  dashTime: 0.15
   dashSpeed: 1300
   dashCooldown: 0.25
   cameraObject: {fileID: 330585546}
