@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Lumin;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 
 public class playercomponent : MonoBehaviour
 {
@@ -62,10 +63,9 @@ public class playercomponent : MonoBehaviour
         if(isDashing) { return; }
         RayCast();
     }
-
+    RaycastHit hit;
     private void RayCast()
     {
-        RaycastHit hit;
         Vector3 castPos = transform.position;
         castPos.y += 1;
 
@@ -74,6 +74,7 @@ public class playercomponent : MonoBehaviour
             if (hit.collider != null)
             {
                 Vector3 movePos = transform.position;
+                //transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal);
                 movePos.y = hit.point.y + groundDistance;
                 transform.position = movePos;
             }
@@ -111,6 +112,8 @@ public class playercomponent : MonoBehaviour
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
+        
+        //Input movement
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
@@ -123,6 +126,7 @@ public class playercomponent : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
 
     }
 
@@ -153,10 +157,37 @@ public class playercomponent : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             controller.Move(moveDirection.normalized * dashSpeed * Time.deltaTime); 
-            yield return null;
+            yield return controller;
         }
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+    #region Slide Slope Code
+    //private void SetSlopeSlideVelocity()
+    //{
+    //    if(Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hitInfo, 5))
+    //    {
+    //        float angle = Vector3.Angle(hitInfo.normal, Vector3.up);
+    //        if(angle >= controller.slopeLimit)
+    //        {
+    //            slopeSlideVelocity = Vector3.ProjectOnPlane(new Vector3(0, walkSpeed, 0), hitInfo.normal);
+    //            Debug.Log(slopeSlideVelocity);
+    //            return;
+    //        }
+    //        if (isSliding)
+    //        {
+    //            slopeSlideVelocity -= slopeSlideVelocity * Time.deltaTime * 3;
+    //            if (slopeSlideVelocity.magnitude > 1)
+    //            {
+    //                controller.Move(slopeSlideVelocity);
+    //                Debug.Log("aaaaa");
+    //                return;
+    //            }
+    //        }
+    //    }
+
+    //    slopeSlideVelocity = Vector3.zero;
+    //}
+    #endregion
 }
