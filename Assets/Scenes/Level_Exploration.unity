@@ -1939,8 +1939,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.137852, y: 0.14754829, z: -0.020772288, w: 0.97918075}
-  m_LocalPosition: {x: -643.6891, y: 489.16998, z: -102.20001}
+  m_LocalRotation: {x: 0.14386474, y: 0.1474179, z: -0.021678325, w: 0.97831535}
+  m_LocalPosition: {x: -639.63324, y: 489.16998, z: -89.04755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2392,8 +2392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: -91.34, y: 147.17, z: -296.2}
+  m_BindingMode: 5
+  m_FollowOffset: {x: 0, y: 147.17, z: -296.2}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2664,8 +2664,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456395354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.137852, y: 0.14754829, z: -0.020772288, w: 0.97918075}
-  m_LocalPosition: {x: -643.6891, y: 489.16998, z: -102.20001}
+  m_LocalRotation: {x: 0.14386474, y: 0.1474179, z: -0.021678325, w: 0.97831535}
+  m_LocalPosition: {x: -639.63324, y: 489.16998, z: -89.04755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7979,7 +7979,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -8913,9 +8913,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -8925,7 +8925,7 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -8978,7 +8978,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
