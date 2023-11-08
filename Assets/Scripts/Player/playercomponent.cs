@@ -22,7 +22,6 @@ public class playercomponent : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private float walkSpeed;
-
     [SerializeField] private float runSpeed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -141,7 +140,7 @@ public class playercomponent : MonoBehaviour
     }
     private float ShiftRun()
     {
-        float defaultSpeed = 150f;
+        float defaultSpeed = 700f;
         if (Input.GetKeyDown(KeyCode.LeftShift)) { walkSpeed = runSpeed; }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         walkSpeed = defaultSpeed;
