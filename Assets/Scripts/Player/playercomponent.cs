@@ -30,6 +30,13 @@ public class playercomponent : MonoBehaviour
     [SerializeField] private Animator anim;
     private float playerHeight;
 
+    [Header("Combat")]
+    //[SerializeField] private float noOfClicks;
+    //[SerializeField] private float cooldownTime;
+    //public float nextFireTime;
+    //public float lastClickedTime = 0;
+    //public float maxComboDelay = 0.5f;
+
     [Header("Dash")]
     [SerializeField] float dashTime;
     [SerializeField] float dashSpeed;
@@ -56,6 +63,7 @@ public class playercomponent : MonoBehaviour
         ShiftRun();
         PlayerMovement();
         Combat();
+        
 
     }
     private void FixedUpdate()
@@ -163,18 +171,11 @@ public class playercomponent : MonoBehaviour
 
     private void Combat()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
             anim.SetBool("Attack1", true);
+
         }
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    EndAttack();
-        //}
-    }
-    public void EndAttack()
-    {
-        anim.SetBool("Attack1", false);
     }
 
     private IEnumerator Dash()

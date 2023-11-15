@@ -5,17 +5,18 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float health;
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject player;
+   
 
     // Update is called once per frame
     void Update()
     {
         if(health <= 0)
         {
-            Debug.Log("Enemy is dead");
+            Debug.Log("Enemy is killed");
+            Destroy(enemy);
         }
     }
+   
 }
