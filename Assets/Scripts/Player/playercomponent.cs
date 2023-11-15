@@ -27,7 +27,8 @@ public class playercomponent : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private CharacterController controller;
     [SerializeField] private CustomInput playerController;
-    [SerializeField] private float playerHeight;
+    [SerializeField] private Animator anim;
+    private float playerHeight;
 
     [Header("Dash")]
     [SerializeField] float dashTime;
@@ -54,6 +55,7 @@ public class playercomponent : MonoBehaviour
         if(isDashing) { return; }
         ShiftRun();
         PlayerMovement();
+        Combat();
 
     }
     private void FixedUpdate()
@@ -118,8 +120,10 @@ public class playercomponent : MonoBehaviour
         moveDir = new Vector3(x, 0, y).normalized;
         if (moveDir.magnitude >= 0.1f)
         {
+            
             MoveDirection();
         }
+        if(moveDir.magnitude <= 0.1f) { anim.SetBool("isWalking", false); }
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartCoroutine(Dash());
@@ -136,15 +140,41 @@ public class playercomponent : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
         moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         controller.Move(moveDirection.normalized * walkSpeed * Time.deltaTime);
+        anim.SetBool("isWalking", true);
         return controller;
     }
     private float ShiftRun()
     {
         float defaultSpeed = 700f;
-        if (Input.GetKeyDown(KeyCode.LeftShift)) { walkSpeed = runSpeed; }
+        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+        {
+           
+            walkSpeed = runSpeed;
+            anim.SetBool("isRunning", true);
+        }
         if (Input.GetKeyUp(KeyCode.LeftShift))
-        walkSpeed = defaultSpeed;
-        return walkSpeed;
+        {
+            anim.SetBool("isRunning", false);
+            walkSpeed = defaultSpeed;
+        }
+            return walkSpeed;
+        
+    }
+
+    private void Combat()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetBool("Attack1", true);
+        }
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    EndAttack();
+        //}
+    }
+    public void EndAttack()
+    {
+        anim.SetBool("Attack1", false);
     }
 
     private IEnumerator Dash()
@@ -161,31 +191,4 @@ public class playercomponent : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
-    #region Slide Slope Code
-    //private void SetSlopeSlideVelocity()
-    //{
-    //    if(Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hitInfo, 5))
-    //    {
-    //        float angle = Vector3.Angle(hitInfo.normal, Vector3.up);
-    //        if(angle >= controller.slopeLimit)
-    //        {
-    //            slopeSlideVelocity = Vector3.ProjectOnPlane(new Vector3(0, walkSpeed, 0), hitInfo.normal);
-    //            Debug.Log(slopeSlideVelocity);
-    //            return;
-    //        }
-    //        if (isSliding)
-    //        {
-    //            slopeSlideVelocity -= slopeSlideVelocity * Time.deltaTime * 3;
-    //            if (slopeSlideVelocity.magnitude > 1)
-    //            {
-    //                controller.Move(slopeSlideVelocity);
-    //                Debug.Log("aaaaa");
-    //                return;
-    //            }
-    //        }
-    //    }
-
-    //    slopeSlideVelocity = Vector3.zero;
-    //}
-    #endregion
 }
