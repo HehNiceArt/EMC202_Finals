@@ -30,12 +30,9 @@ public class playercomponent : MonoBehaviour
     [SerializeField] private Animator anim;
     private float playerHeight;
 
-    [Header("Combat")]
-    //[SerializeField] private float noOfClicks;
-    //[SerializeField] private float cooldownTime;
-    //public float nextFireTime;
-    //public float lastClickedTime = 0;
-    //public float maxComboDelay = 0.5f;
+    [Header("Player Stats")]
+    public float playerHealth;
+    public float playerDamage;
 
     [Header("Dash")]
     [SerializeField] float dashTime;
@@ -63,7 +60,10 @@ public class playercomponent : MonoBehaviour
         ShiftRun();
         PlayerMovement();
         Combat();
-        
+        if(playerHealth <= 0)
+        {
+            Debug.Log("Player is dead");
+        }
 
     }
     private void FixedUpdate()

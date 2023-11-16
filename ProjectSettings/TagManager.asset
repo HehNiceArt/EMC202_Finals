@@ -17,8 +17,8 @@ TagManager:
   - Background
   - Wall
   - Enemy
-  - 
-  - 
+  - Player
+  - PlayerComponent
   - 
   - 
   - 
