@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     public float health;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject player;
-    [SerializeField] private Rigidbody rb;
 
     [Header("AI Behaviour")]
     [SerializeField] private Transform[] points;
@@ -23,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private GameObject startPoint;
-    [SerializeField] private GameObject endPoint;
+    [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float enemyDamage;
     [SerializeField] private float radius;
@@ -70,20 +69,20 @@ public class Enemy : MonoBehaviour
         if(distanceToTarget < minRange)
         {
             playerDetected = true;
-            if (playerDetected)
+            if (playerDetected == true)
             {
                 anim.SetBool("enemyWalking", false);
-                if(distanceToAttack < minRange)
+                if(distanceToAttack < attackRadius)
                 {
                     anim.SetBool("enemyAttacking", true);
-                    StartCoroutine("AttackInterval");
                 }
                 Vector3 fwd = player.transform.forward;
                 fwd.y = 0;
                 enemy.transform.rotation = Quaternion.LookRotation(fwd);
-                //enemy.transform.LookAt(fwd);
-                Vector3 pos = Vector3.MoveTowards(-transform.position, player.transform.position, playerToEnemyDistance);
+                // move the enemy towards the player once within range
+                Vector3 pos = Vector3.MoveTowards(enemy.transform.position, player.transform.position, playerToEnemyDistance);
                 agent.SetDestination(pos);
+                Debug.Log(agent.SetDestination(pos));
             }
             else
             {
@@ -96,30 +95,13 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("player hit");
         playerCollider.GetComponent<playercomponent>().playerHealth -= enemyDamage;
-        Debug.Log(playerCollider.GetComponent<playercomponent>().playerHealth -= enemyDamage);
         anim.SetBool("enemyAttacking", false);
     }
 
-    public void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Rigidbody body = hit.collider.attachedRigidbody;
-
-        Debug.Log("oncontrollercolliderhit test");
-        if (body == null || body.isKinematic)
-        {
-            return;
-        }
-    }
-    IEnumerator AttackInterval()
-    {
-        yield return new WaitForSeconds(5f);
-        //anim.SetBool("enemyAttacking", true);
-    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(enemy.transform.position, minRange);
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere (endPoint.transform.position, radius);
-        Gizmos.DrawWireSphere (startPoint.transform.position, radius);
+        Gizmos.DrawWireSphere (transform.position, attackRadius);
     }
 }
