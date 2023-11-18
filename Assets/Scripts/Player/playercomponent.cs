@@ -10,18 +10,16 @@ public class playercomponent : MonoBehaviour
 {
     [Header("Terrain")]
     [SerializeField] private float groundDistance;
-
     [SerializeField] private LayerMask terrainLayer;
 
     [Header("Slope")]
     [SerializeField] private float maxSlopeHeight;
-
     private RaycastHit slopeHit;
     [SerializeField] private float maxSlopeAngle;
     private bool exitingSlope;
 
     [Header("Player")]
-    [SerializeField] private float walkSpeed;
+    public float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -48,7 +46,7 @@ public class playercomponent : MonoBehaviour
 
     private float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
-
+    
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -59,12 +57,10 @@ public class playercomponent : MonoBehaviour
         if(isDashing) { return; }
         ShiftRun();
         PlayerMovement();
-        Combat();
         if(playerHealth <= 0)
         {
             Debug.Log("Player is dead");
         }
-
     }
     private void FixedUpdate()
     {
@@ -151,9 +147,8 @@ public class playercomponent : MonoBehaviour
         anim.SetBool("isWalking", true);
         return controller;
     }
-    private float ShiftRun()
+    public float ShiftRun()
     {
-        float defaultSpeed = 700f;
         if (Input.GetKeyDown(KeyCode.LeftShift)) 
         {
            
@@ -162,20 +157,12 @@ public class playercomponent : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            float defaultSpeed = 700f;
             anim.SetBool("isRunning", false);
             walkSpeed = defaultSpeed;
         }
             return walkSpeed;
         
-    }
-
-    private void Combat()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            anim.SetBool("Attack1", true);
-
-        }
     }
 
     private IEnumerator Dash()

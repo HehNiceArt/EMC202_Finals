@@ -26,9 +26,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float enemyDamage;
     [SerializeField] private float radius;
+    [SerializeField] private bool isAttacking;
+    [SerializeField] private int comboCount;
     public CharacterController playerCollider;
     [Header("Animation")]
     [SerializeField] private Animator anim;
+    [SerializeField] private Animator playerAnim;
 
     float distance;
     void Update()
@@ -72,6 +75,10 @@ public class Enemy : MonoBehaviour
             if (playerDetected == true)
             {
                 anim.SetBool("enemyWalking", false);
+                if( distanceToAttack > attackRadius)
+                {
+                    anim.SetBool("enemyAttacking", false);
+                }
                 if(distanceToAttack < attackRadius)
                 {
                     anim.SetBool("enemyAttacking", true);
@@ -91,9 +98,12 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    
+  
     public void Attack()
     {
         Debug.Log("player hit");
+        playerAnim.SetTrigger("isHurt");
         playerCollider.GetComponent<playercomponent>().playerHealth -= enemyDamage;
         anim.SetBool("enemyAttacking", false);
     }
