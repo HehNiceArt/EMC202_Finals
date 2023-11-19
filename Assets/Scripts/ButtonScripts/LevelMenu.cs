@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
 {
-    [SerializeField] GameObject escMenu;
+    [SerializeField] GameObject[] uiContainers;
 
     bool isPaused = false;
+
+    int homeSceneLoad;
     private void Start()
     {
-        escMenu.SetActive(false);
+        homeSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        uiContainers[0].SetActive(false);
+        uiContainers[1].SetActive(false);
+        Time.timeScale = 1f;
     }
     // Update is called once per frame
     void Update()
@@ -25,16 +31,45 @@ public class LevelMenu : MonoBehaviour
     {
         if(isPaused)
         {
-            escMenu.SetActive(false);
+            uiContainers[0].SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
         }
         else
         {
-            escMenu.SetActive(true);
+            uiContainers[0].SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
         }
         isPaused = !isPaused;
+    }
+    public void ResumeGame()
+    {
+        uiContainers[0].SetActive(false);
+        Cursor.lockState= CursorLockMode.Locked;
+        Time.timeScale = 1f;
+    }
+    public void ExitConfirm()
+    {
+        uiContainers[0].SetActive(false);
+        uiContainers[1].SetActive(true);
+    }
+    public void GoBack()
+    {
+        uiContainers[0].SetActive(true);
+        uiContainers[1].SetActive(false);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+    public void GoBackHome()
+    {
+        StartCoroutine(GoHome());
+    }
+    IEnumerator GoHome()
+    {
+        AsyncOperation asyncload = SceneManager.LoadSceneAsync(homeSceneLoad);
+        while(!asyncload.isDone) { yield return null; }
     }
 }
