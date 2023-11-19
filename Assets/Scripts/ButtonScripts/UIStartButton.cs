@@ -10,11 +10,11 @@ public class UIStartButton : MonoBehaviour
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         Button start = root.Q<Button>("StartButton");
-        Label buildVersion = root.Q<Label>("BuildVersion");
-        Label buildVersionDate = root.Q<Label>("BuildVersionDate");
-        string date = string.Format(DateTime.Now.ToString("d"));
-        buildVersion.text = Application.version;
-        buildVersionDate.text = string.Format("{0}", DateTime.Now.ToString("d"));
+        //Label buildVersion = root.Q<Label>("BuildVersion");
+        //Label buildVersionDate = root.Q<Label>("BuildVersionDate");
+        //string date = string.Format(DateTime.Now.ToString("d"));
+        //buildVersion.text = Application.version;
+        //buildVersionDate.text = string.Format("{0}", DateTime.Now.ToString("d"));
         
         start.clicked += () => StartCoroutine(UnLoad());
     }

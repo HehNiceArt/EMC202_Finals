@@ -13,6 +13,7 @@ public class UIHomeSecond : MonoBehaviour
     [SerializeField] Sprite[] backgroundImage;
     [SerializeField] Image backgroundContainer;
     [SerializeField] GameObject[] buttonContainers;
+    [SerializeField] GameObject[] loreContainers;
 
     private int nextSceneLoad;
     private void Start()
@@ -23,6 +24,9 @@ public class UIHomeSecond : MonoBehaviour
         buttonContainers[1].SetActive(false);
         buttonContainers[2].SetActive(false) ;
         buttonContainers[3].SetActive(false);
+        loreContainers[0].SetActive(false);
+        loreContainers[1].SetActive(false);
+        loreContainers[2].SetActive(false);
         BackgroundImage();
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
@@ -51,12 +55,29 @@ public class UIHomeSecond : MonoBehaviour
         buttonContainers[0].SetActive(false) ;
         buttonContainers[1].SetActive(true) ;   
     }
+    public void YumiLore()
+    {
+        loreContainers[0].SetActive(true);
+    }
+    public void MaikoLore()
+    {
+        loreContainers[1].SetActive(true);
+    }
+    public void UtaLore()
+    {
+        loreContainers[2].SetActive(true);
+    }
     public void GoBackToMain()
     {
         buttonContainers[0].SetActive(true);
-        buttonContainers[1].SetActive(false) ;
-        buttonContainers[2].SetActive(false) ;
-        buttonContainers[3].SetActive(false) ;
+        buttonContainers[1].SetActive(false);
+        buttonContainers[2].SetActive(false);
+        buttonContainers[3].SetActive(false);
+        buttonContainers[4].SetActive(true);
+
+        loreContainers[0].SetActive(false);
+        loreContainers[1].SetActive(false);
+        loreContainers[2].SetActive(false);
     }
     public void ExitConfirmation()
     {

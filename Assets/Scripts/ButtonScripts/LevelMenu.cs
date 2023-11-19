@@ -15,6 +15,7 @@ public class LevelMenu : MonoBehaviour
         homeSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
         uiContainers[0].SetActive(false);
         uiContainers[1].SetActive(false);
+        uiContainers[2].SetActive(false);
         Time.timeScale = 1f;
     }
     // Update is called once per frame
@@ -32,6 +33,8 @@ public class LevelMenu : MonoBehaviour
         if(isPaused)
         {
             uiContainers[0].SetActive(false);
+            uiContainers[1].SetActive(false);
+            uiContainers[2].SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
         }
@@ -58,6 +61,12 @@ public class LevelMenu : MonoBehaviour
     {
         uiContainers[0].SetActive(true);
         uiContainers[1].SetActive(false);
+        uiContainers[2].SetActive(false);
+    }
+    public void Settings()
+    {
+        uiContainers[0].SetActive(false);
+        uiContainers[2].SetActive(true);
     }
     public void ExitGame()
     {
